@@ -1,28 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button calss="btn" @click="show"> 显示 </button>
+    <button calss="btn" @click="hide"> 隐藏 </button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      text: '请稍等...'
+    }
+  },
+  methods: {
+    show() {
+      this.toast = this.toast || this.$createToast({
+        props: {
+          text: this.text
+        }
+      })
+      this.toast.show()
+    },
+    hide() {
+      this.toast && this.toast.hide()
+    }
   }
 }
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  overflow: hidden;
+}
+button {
+  display: block;
+  margin: 20px auto 0;
+  border: 1px solid black;
+  font-size: 20px;
+  outline: none;
 }
 </style>
